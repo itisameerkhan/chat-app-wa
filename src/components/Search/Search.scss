@@ -1,0 +1,39 @@
+$primary-color-1: #111b21;
+$primary-color-2: #0b141a;
+$primary-color-3: #2a3942;
+$primary-color-4: #202c33;
+$primary-color-5: #2a3942;
+$primary-color-6: #005c4b;
+$primary-color-7: #25d366;
+
+.search {
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid rgb(57, 57, 57);
+    padding-bottom: 1rem;
+}
+.search-main {
+    width: 95%;
+    background-color: $primary-color-4;
+    height: 35px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+
+    input {
+        height: 100%;
+        width: 90%;
+        background-color: $primary-color-4;
+        border: none;
+        outline: none;
+        padding-left: 1rem;
+        color: white;
+        font-size: 1rem;
+    }
+    span {
+        width: 10%;
+        padding-left: .5rem;
+    }
+}

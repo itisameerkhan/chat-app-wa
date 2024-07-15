@@ -1,0 +1,38 @@
+$primary-color-1: #111b21;
+$primary-color-2: #0b141a;
+$primary-color-3: #2a3942;
+$primary-color-4: #202c33;
+$primary-color-5: #2a3942;
+$primary-color-6: #005c4b;
+$primary-color-7: #25d366;
+
+.chat-overview-main {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.2rem 1rem;
+  border-bottom: 1px solid rgb(57, 57, 57);
+  padding-bottom: .5rem;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $primary-color-4;
+  }
+
+  img {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+  }
+  .chat-o-1 {
+    p {
+      &:nth-child(1) {
+        font-size: 1rem;
+        font-weight: 500;
+      }
+      &:nth-child(2) {
+        color: gray;
+      }
+    }
+  }
+}

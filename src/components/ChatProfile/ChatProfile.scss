@@ -1,0 +1,33 @@
+$primary-color-1: #111b21;
+$primary-color-2: #0b141a;
+$primary-color-3: #2a3942;
+$primary-color-4: #202c33;
+$primary-color-5: #2a3942;
+$primary-color-6: #005c4b;
+$primary-color-7: #25d366;
+
+.chat-profile {
+  width: 100%;
+  padding: 1rem;
+  border-top-right-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: $primary-color-4;
+}
+
+.c-p-1 {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  img {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+  }
+}
+.c-p-2 {
+  display: flex;
+  gap: 2rem;
+}

@@ -1,0 +1,37 @@
+$primary-color-1: #111b21;
+$primary-color-2: #0b141a;
+$primary-color-3: #2a3942;
+$primary-color-4: #202c33;
+$primary-color-5: #2a3942;
+$primary-color-6: #005c4b;
+$primary-color-7: #25d366;
+
+.nav-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  background-color: $primary-color-4;
+  border-top-left-radius: 10px;
+
+  img {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+  }
+  span {
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    background-color: rgb(80, 105, 80);
+
+    &:hover {
+      background-color: rgb(5, 107, 5);
+    }
+  }
+}
+.nav-inner {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}

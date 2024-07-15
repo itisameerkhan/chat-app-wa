@@ -1,13 +1,16 @@
 import { useState } from "react";
 import "./Login.scss";
-import { auth, googleAuth } from "../../config/firebase";
+import { auth, googleAuth, storage, db } from "../../config/firebase";
 import {
   createUserWithEmailAndPassword,
   AuthErrorCodes,
   signInWithEmailAndPassword,
   signInWithPopup,
+  updateProfile,
 } from "firebase/auth";
 import Spinner from "../../components/Spinner/Spinner";
+import { uploadBytes, ref, getDownloadURL } from "firebase/storage";
+import { setDoc, doc } from "firebase/firestore";
 
 const Login = () => {
   const [loginState, setLoginState] = useState("signup");
@@ -18,6 +21,7 @@ const Login = () => {
     photoURL: "",
   });
 
+  const [photoFile, setPhotoFile] = useState(null);
   const [showPass, setShowPass] = useState(false);
   const [showSpinner, setShowSpinner] = useState(false);
   const [errMsg, setErrMsg] = useState({
@@ -32,6 +36,20 @@ const Login = () => {
     });
   };
 
+  const handleUploadImage = async () => {
+    try {
+      const imgRef = ref(storage, `profile/${photoFile.name}`);
+      await uploadBytes(imgRef, photoFile);
+      const photoURL = await getDownloadURL(imgRef);
+      setUserData({
+        ...userData,
+        photoURL: photoURL,
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   const handleSubmit = async () => {
     setErrMsg({
       error: false,
@@ -39,9 +57,7 @@ const Login = () => {
     });
 
     if (
-      userData.displayName === "" ||
       userData.email === "" ||
-      userData.photoURL === "" ||
       userData.password === ""
     ) {
       setErrMsg({
@@ -54,12 +70,26 @@ const Login = () => {
     try {
       setShowSpinner(true);
       if (loginState === "signup") {
-        const response = await createUserWithEmailAndPassword(
+        handleUploadImage();
+        const userRef = await createUserWithEmailAndPassword(
           auth,
           userData.email,
           userData.password
         );
-        console.log(response);
+        await updateProfile(auth.currentUser, {
+          displayName: userData.displayName,
+          photoURL: userData.photoURL,
+        });
+
+        console.log(auth.currentUser);
+        await setDoc(doc(db, "users", auth.currentUser.uid), {
+          displayName: userData.displayName,
+          photoURL: userData.photoURL,
+          uid: auth.currentUser.uid,
+          email: userData.email,
+        });
+
+        await setDoc(doc(db, "userChat", userRef.user.uid), {});
       } else {
         const response = await signInWithEmailAndPassword(
           auth,
@@ -98,8 +128,14 @@ const Login = () => {
 
   const handleGoogleSubmit = async () => {
     try {
-      const response = await signInWithPopup(auth, googleAuth);
-      console.log(response);
+      const userRef = await signInWithPopup(auth, googleAuth);
+      await setDoc(doc(db, "users", userRef.user.uid), {
+        displayName: userRef.user.displayName,
+        photoURL: userRef.user.photoURL,
+        email: userRef.user.email,
+        uid: userRef.user.uid,
+      });
+      await setDoc(doc(db, "userChat", userRef.user.uid), {});
     } catch (error) {
       console.log(error);
     }
@@ -163,7 +199,7 @@ const Login = () => {
                 type="file"
                 className="login-file"
                 accept="image/png, image/jpeg, image/jpg"
-                onChange={handleChange}
+                onChange={(e) => setPhotoFile(e.target.files[0])}
                 name="photoURL"
               />
             </div>

@@ -1,0 +1,25 @@
+$primary-color-1: #111b21;
+$primary-color-2: #0b141a;
+$primary-color-3: #2a3942;
+$primary-color-4: #202c33;
+$primary-color-5: #2a3942;
+$primary-color-6: #005c4b;
+$primary-color-7: #25d366;
+
+.home-main {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+
+    .home {
+        width: 1200px;
+        height: 600px;
+        display: flex;
+        border: 1px solid gray;
+        border-radius: 10px;
+        background-color: $primary-color-1;
+    }
+}
