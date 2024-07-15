@@ -1,0 +1,110 @@
+$primary-color-1: #111b21;
+$primary-color-2: #0b141a;
+$primary-color-3: #2a3942;
+$primary-color-4: #202c33;
+$primary-color-5: #2a3942;
+$primary-color-6: #005c4b;
+$primary-color-7: #25d366;
+
+.login-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+}
+.login {
+  background-color: $primary-color-5;
+  width: 500px;
+  padding: 2rem 3rem;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+
+    label {
+      font-size: 1.2rem;
+    }
+    input {
+      height: 40px;
+      border-radius: 5px;
+      outline: none;
+      padding-left: 1rem;
+      font-size: 1.3rem;
+    }
+  }
+  button {
+    width: 100%;
+    height: 40px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    cursor: pointer;
+    background-color: white !important;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 100ms ease-in-out;
+
+    &:active {
+        transform: scale(.99);
+    }
+  }
+  .login-file {
+    padding: 0 !important;
+  }
+  .login-title {
+    font-size: 2rem;
+  }
+}
+.google-btn {
+  background-color: white;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  img {
+    height: 30px;
+    width: 30px;
+    margin-right: 1rem;
+  }
+}
+.login-already {
+    text-decoration: underline;
+    color: white;
+    cursor: pointer;
+}
+.pad {
+    margin-top: 2rem;
+}
+.pass-form {
+  position: relative;
+
+  span {
+    position: absolute;
+    right: 0px;
+    top: 42%;
+    color: black;
+    background-color: white;
+    height: 38px;
+    border-radius: 10px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+}
+.err-msg {
+  background-color: orange;
+  padding: 1rem;
+  border-radius: 10px;
+  color: white;
+  font-size: 1.2rem;
+}
