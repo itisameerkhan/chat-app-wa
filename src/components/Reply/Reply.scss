@@ -1,0 +1,47 @@
+$primary-color-1: #111b21;
+$primary-color-2: #0b141a;
+$primary-color-3: #2a3942;
+$primary-color-4: #202c33;
+$primary-color-5: #2a3942;
+$primary-color-6: #005c4b;
+$primary-color-7: #25d366;
+
+.reply {
+  height: 10%;
+  background-color: $primary-color-4;
+}
+.reply-main {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 2rem;
+
+  input {
+    background-color: $primary-color-5;
+    color: white;
+    border: none;
+    outline: none;
+    width: 90%;
+    height: 70%;
+    border-radius: 5px;
+    font-size: 1rem;
+    padding-left: 1rem;
+  }
+}
+.img-reply-input {
+  display: none;
+}
+
+span {
+  cursor: pointer;
+  margin: 0 0.5rem;
+  padding: 0.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background-color: $primary-color-3;
+  }
+}

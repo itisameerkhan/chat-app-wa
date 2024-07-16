@@ -1,0 +1,25 @@
+$primary-color-1: #111b21;
+$primary-color-2: #0b141a;
+$primary-color-3: #2a3942;
+$primary-color-4: #202c33;
+$primary-color-5: #2a3942;
+$primary-color-6: #005c4b;
+$primary-color-7: #25d366;
+
+.message-main {
+  padding: 1rem;
+  max-width: 40%;
+  background-color: $primary-color-4;
+  border-radius: 10px 10px 10px 0;
+}
+.owner {
+  display: flex;
+  flex-direction: row-reverse;
+
+  .message-main {
+    max-width: 40%;
+    background-color: $primary-color-6;
+    border-radius: 10px 10px 0 10px;
+    align-items: flex-end;
+  }
+}
