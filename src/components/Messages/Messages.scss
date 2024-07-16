@@ -6,3 +6,9 @@
   gap: 1rem;
   padding: 0 1rem;
 }
+.user {
+  flex-direction: row;
+  .message-main {
+    padding: 1rem !important;
+  }
+}

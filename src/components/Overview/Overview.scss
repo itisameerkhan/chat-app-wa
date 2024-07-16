@@ -12,7 +12,7 @@ $primary-color-7: #25d366;
   gap: 1rem;
   padding: 0.2rem 1rem;
   border-bottom: 1px solid rgb(57, 57, 57);
-  padding-bottom: .5rem;
+  padding-bottom: 0.5rem;
   cursor: pointer;
 
   &:hover {
@@ -23,6 +23,8 @@ $primary-color-7: #25d366;
     height: 50px;
     width: 50px;
     border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
   }
   .chat-o-1 {
     p {
@@ -35,4 +37,9 @@ $primary-color-7: #25d366;
       }
     }
   }
+}
+.no-result {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

@@ -1,10 +1,12 @@
 import "./Message.scss";
 
-const Message = () => {
+const Message = ({props}) => {
+  console.log(props);
+
   return (
     <div className="owner">
       <div className="message-main">
-        <p>hello world</p>
+        <p>{props.text}</p>
       </div>
     </div>
   );

@@ -97,6 +97,10 @@ $primary-color-7: #25d366;
     align-items: center;
     justify-content: center;
     cursor: pointer;
+
+    &:hover {
+      background-color: white;
+    }
   }
 }
 .err-msg {

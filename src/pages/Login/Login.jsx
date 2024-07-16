@@ -21,7 +21,6 @@ const Login = () => {
     photoURL: "",
   });
 
-  const [photoFile, setPhotoFile] = useState(null);
   const [showPass, setShowPass] = useState(false);
   const [showSpinner, setShowSpinner] = useState(false);
   const [errMsg, setErrMsg] = useState({
@@ -36,7 +35,9 @@ const Login = () => {
     });
   };
 
-  const handleUploadImage = async () => {
+  const handleUploadImage = async (e) => {
+    console.log("file upload functions");
+    const photoFile = e.target.files[0];
     try {
       const imgRef = ref(storage, `profile/${photoFile.name}`);
       await uploadBytes(imgRef, photoFile);
@@ -45,6 +46,7 @@ const Login = () => {
         ...userData,
         photoURL: photoURL,
       });
+      console.log(photoURL);
     } catch (e) {
       console.log(e);
     }
@@ -56,10 +58,7 @@ const Login = () => {
       message: "",
     });
 
-    if (
-      userData.email === "" ||
-      userData.password === ""
-    ) {
+    if (userData.email === "" || userData.password === "") {
       setErrMsg({
         message: "All fields mandatory",
         error: true,
@@ -70,12 +69,12 @@ const Login = () => {
     try {
       setShowSpinner(true);
       if (loginState === "signup") {
-        handleUploadImage();
         const userRef = await createUserWithEmailAndPassword(
           auth,
           userData.email,
           userData.password
         );
+        console.log(userData);
         await updateProfile(auth.currentUser, {
           displayName: userData.displayName,
           photoURL: userData.photoURL,
@@ -88,6 +87,7 @@ const Login = () => {
           uid: auth.currentUser.uid,
           email: userData.email,
         });
+        console.log(auth.currentUser);
 
         await setDoc(doc(db, "userChat", userRef.user.uid), {});
       } else {
@@ -199,7 +199,7 @@ const Login = () => {
                 type="file"
                 className="login-file"
                 accept="image/png, image/jpeg, image/jpg"
-                onChange={(e) => setPhotoFile(e.target.files[0])}
+                onChange={handleUploadImage}
                 name="photoURL"
               />
             </div>

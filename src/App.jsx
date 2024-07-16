@@ -6,22 +6,23 @@ import { onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { addUser, removeUser } from "./context/userSlice";
 import { useDispatch } from "react-redux";
+import { onSnapshot, doc } from "firebase/firestore";
+import { db } from "./config/firebase";
 
 const App = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
+      console.log(user);
       if (user) {
-        console.log(user);
-        const userData = {
-          displayName: user.displayName,
-          photoURL: user.photoURL,
-          uid: user.uid,
-          email: user.email,
-        };
-        dispatch(addUser(userData));
+        const userRef = doc(db, "users", user.uid);
+        onSnapshot(userRef, (doc) => {
+          if (doc.exists()) {
+            console.log("doc", doc.data());
+            dispatch(addUser(doc.data()));
+          }
+        });
         navigate("/home");
       } else {
         dispatch(removeUser());
