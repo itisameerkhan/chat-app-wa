@@ -25,7 +25,7 @@ const App = () => {
         });
         navigate("/home");
       } else {
-        dispatch(removeUser());
+        dispatch(removeUser());  
         navigate("/");
       }
     });
@@ -41,5 +41,4 @@ const App = () => {
     </div>
   );
 };
-
 export default App;
